@@ -1,0 +1,57 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36203.30
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - API", "1 - API", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Application", "2 - Application", "{0BC273D7-AFA6-4768-BD9F-259ADBEDFAB8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Infrastructure", "3 - Infrastructure", "{87976E63-8D6C-40DA-AB41-0AF258087BB2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Domain", "4 - Domain", "{B573E3EA-0C1E-469E-ABBC-7C5383833BC2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PosInfnet.InfnetMusic.Domain", "PosInfnet.InfnetMusic.Domain\PosInfnet.InfnetMusic.Domain.csproj", "{A78E1661-D7AB-4DF4-904E-2456A317EE9C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PosInfnet.InfnetMusic.Infrastructure", "PosInfnet.InfnetMusic.Infrastructure\PosInfnet.InfnetMusic.Infrastructure.csproj", "{B484FBC2-9891-4156-B931-EE3D50E7F6BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PosInfnet.InfnetMusic.API", "PosInfnet.InfnetMusic.API\PosInfnet.InfnetMusic.API.csproj", "{3987A916-3D65-447D-9113-7207D0892A57}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PosInfnet.InfnetMusic.Application", "PosInfnet.InfnetMusic.Application\PosInfnet.InfnetMusic.Application.csproj", "{DB3FBA6B-FFDD-4523-9E03-4539C41DCCE4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A78E1661-D7AB-4DF4-904E-2456A317EE9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A78E1661-D7AB-4DF4-904E-2456A317EE9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A78E1661-D7AB-4DF4-904E-2456A317EE9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A78E1661-D7AB-4DF4-904E-2456A317EE9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B484FBC2-9891-4156-B931-EE3D50E7F6BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B484FBC2-9891-4156-B931-EE3D50E7F6BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B484FBC2-9891-4156-B931-EE3D50E7F6BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B484FBC2-9891-4156-B931-EE3D50E7F6BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3987A916-3D65-447D-9113-7207D0892A57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3987A916-3D65-447D-9113-7207D0892A57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3987A916-3D65-447D-9113-7207D0892A57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3987A916-3D65-447D-9113-7207D0892A57}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB3FBA6B-FFDD-4523-9E03-4539C41DCCE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB3FBA6B-FFDD-4523-9E03-4539C41DCCE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB3FBA6B-FFDD-4523-9E03-4539C41DCCE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB3FBA6B-FFDD-4523-9E03-4539C41DCCE4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A78E1661-D7AB-4DF4-904E-2456A317EE9C} = {B573E3EA-0C1E-469E-ABBC-7C5383833BC2}
+		{B484FBC2-9891-4156-B931-EE3D50E7F6BB} = {87976E63-8D6C-40DA-AB41-0AF258087BB2}
+		{3987A916-3D65-447D-9113-7207D0892A57} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{DB3FBA6B-FFDD-4523-9E03-4539C41DCCE4} = {0BC273D7-AFA6-4768-BD9F-259ADBEDFAB8}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A9FCC912-6744-4504-AC83-417C15BAAA4F}
+	EndGlobalSection
+EndGlobal
