@@ -18,13 +18,14 @@ public class MusicaRepository(ApplicationDbContext _context) : IMusicaRepository
             .ToListAsync();
     }
 
-    public async Task<Musica?> ObterMusicaPorTituloAsync(string Titulo)
+    public async Task<List<Musica>> ObterMusicaPorTituloAsync(string Titulo)
     {
         return await _context.Musicas
             .AsNoTracking()
             .Include(m => m.Banda)
             .Include(m => m.ContasMusicasFavoritas)
-            .FirstOrDefaultAsync(b => b.Titulo.Contains(Titulo));
+            .Where(m => m.Titulo.Contains(Titulo))
+            .ToListAsync();
     }
 
     public async Task<List<Musica>> ObterMusicasFavoritasAsync(string ContaId)

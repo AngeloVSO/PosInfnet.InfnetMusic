@@ -38,6 +38,43 @@ public class MusicaController(IHttpClientFactory httpClientFactory) : Controller
         return View(musicas);
     }
 
+    public async Task<IActionResult> ObterMusicaPorTitulo(string tituloMusica)
+    {
+        var token = ObterTokenCookie();
+        if (string.IsNullOrEmpty(token))
+        {
+            ModelState.AddModelError(string.Empty, "Token expirado, logue novamente");
+            return View("Index");
+        }
+        var contaId = TokenService.ObterIdPorToken(token);
+        if (contaId == null)
+        {
+            ModelState.AddModelError(string.Empty, "Erro ao obter token.");
+            return View();
+        }
+
+        HttpResponseMessage response;
+
+        if (tituloMusica == null)
+        {
+            response = await _httpClient.GetAsync($"api/musica/obtertodas?contaId={contaId}");
+        }
+        else
+        {
+            response = await _httpClient.GetAsync($"api/musica/obterportitulo?contaId={contaId}&titulo={tituloMusica}");
+        }
+
+        if (!response.IsSuccessStatusCode)
+        {
+            ModelState.AddModelError(string.Empty, "Erro ao obter música.");
+            return View("Index");
+        }
+
+        var musicas = await response.Content.ReadFromJsonAsync<List<MusicaModel>>();
+
+        return View("Index", musicas);
+    }
+
     public async Task<IActionResult> FavoritarMusica(string musicaId)
     {
         var token = ObterTokenCookie();

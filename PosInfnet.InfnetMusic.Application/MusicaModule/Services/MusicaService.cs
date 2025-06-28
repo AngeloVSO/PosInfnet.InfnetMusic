@@ -24,23 +24,18 @@ public class MusicaService(IMusicaRepository musicaRepository, IContaRepository 
         })];
     }
 
-    public async Task<MusicaDto?> ObterMusicaPorTituloAsync(string Titulo, string ContaId)
+    public async Task<List<MusicaDto>> ObterMusicaPorTituloAsync(string Titulo, string ContaId)
     {
-        var musica = await _musicaRepository.ObterMusicaPorTituloAsync(Titulo);
+        var musicas = await _musicaRepository.ObterMusicaPorTituloAsync(Titulo);
 
-        if (musica == null)
-        {
-            return default;
-        }
-
-        return new MusicaDto
+        return [.. musicas.Select(musica => new MusicaDto
         {
             Id = musica.Id,
             Titulo = musica.Titulo,
             BandaId = musica.Banda.Id,
             BandaNome = musica.Banda.Nome,
             EhFavorita = musica.ContasMusicasFavoritas.Any(f => f.Id == ContaId),
-        };
+        })];
     }
 
     public async Task<List<MusicaDto>> ObterMusicasFavoritasAsync(string ContaId)

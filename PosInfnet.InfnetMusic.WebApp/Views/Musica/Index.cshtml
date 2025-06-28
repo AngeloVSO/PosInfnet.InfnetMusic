@@ -5,7 +5,16 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Favorite suas músicas preferidas.</h1>
+    <h1 class="display-4">Busque e favorite suas músicas preferidas.</h1>
+
+    <div class="container mt-4 col-md-8">
+        <form method="get" asp-controller="Musica" asp-action="ObterMusicaPorTitulo">
+            <div class="input-group mb-3">
+                <input type="text" name="tituloMusica" class="form-control" placeholder="Buscar por nome da música" aria-label="tituloMusica">
+                <button class="btn btn-primary" type="submit">Buscar</button>
+            </div>
+        </form>
+    </div>
 
     <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
 

@@ -7,5 +7,5 @@ public interface IMusicaRepository
     Task<List<Musica>> ObterMusicasAsync();
     Task<Musica?> ObterMusicaPorIdAsync(string MusicaId);
     Task<List<Musica>> ObterMusicasFavoritasAsync(string ContaId);
-    Task<Musica?> ObterMusicaPorTituloAsync(string Titulo);
+    Task<List<Musica>> ObterMusicaPorTituloAsync(string Titulo);
 }
