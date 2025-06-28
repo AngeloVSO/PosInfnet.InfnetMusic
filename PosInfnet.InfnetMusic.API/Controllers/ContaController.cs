@@ -22,7 +22,7 @@ public class ContaController(ITokenService tokenService, IContaService contaServ
             return BadRequest("Tentativa de login inválida.");
         }
 
-        var token = await _tokenService.GerarToken(LogarContaDto);
+        var token = await _tokenService.GerarToken(LogarContaDto.Email);
         return Ok(token);
     }
 
@@ -37,5 +37,17 @@ public class ContaController(ITokenService tokenService, IContaService contaServ
         var result = await _contaService.CadastrarContaAsync(CadastrarContaDto);
 
         return result ? Ok(new { message = "Usuário cadastrado com sucesso", email = CadastrarContaDto.Email}) : BadRequest("Falha ao criar usuário.");
+    }
+
+    [HttpPost("token")]
+    public async Task<IActionResult> TokenConta([FromBody] string Email)
+    {
+        if (string.IsNullOrEmpty(Email))
+        {
+            return BadRequest("Dados inválidos.");
+        }
+
+        var token = await _tokenService.GerarToken(Email);
+        return Ok(token);
     }
 }

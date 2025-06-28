@@ -1,5 +1,4 @@
 ﻿using Microsoft.IdentityModel.Tokens;
-using PosInfnet.InfnetMusic.Application.ContaModule.Dtos;
 using PosInfnet.InfnetMusic.Application.ContaModule.Interfaces;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -12,9 +11,9 @@ public sealed class TokenService(IConfiguration configuration, IContaService con
     private readonly IConfiguration _configuration = configuration;
     private readonly IContaService _contaService = contaService;
 
-    public async Task<ContaToken> GerarToken(LogarContaDto usuarioDto)
+    public async Task<ContaToken> GerarToken(string Email)
     {
-        var conta = await _contaService.ObterContaPorEmailAsync(usuarioDto.Email) ?? throw new UnauthorizedAccessException("Usuário ou senha inválidos.");
+        var conta = await _contaService.ObterContaPorEmailAsync(Email) ?? throw new UnauthorizedAccessException("Usuário ou senha inválidos.");
 
         var claims = new List<Claim>
         {

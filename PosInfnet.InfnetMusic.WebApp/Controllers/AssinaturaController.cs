@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PosInfnet.InfnetMusic.WebApp.Models.Assinatura;
+using PosInfnet.InfnetMusic.WebApp.Models.Conta;
 using PosInfnet.InfnetMusic.WebApp.Services;
 
 namespace PosInfnet.InfnetMusic.WebApp.Controllers
@@ -73,6 +74,8 @@ namespace PosInfnet.InfnetMusic.WebApp.Controllers
 
             if (response.IsSuccessStatusCode)
             {
+                await AtualizarCookiesAsync(token);
+
                 var resultadoTransacao = response.Content.ReadFromJsonAsync<TransacaoModel>();
                 
                 if (resultadoTransacao?.Result != null)
@@ -89,6 +92,27 @@ namespace PosInfnet.InfnetMusic.WebApp.Controllers
         private string? ObterTokenCookie()
         {
             return Request.Cookies["InfnetMusic.Token"];
+        }
+
+        private async Task AtualizarCookiesAsync(string token)
+        {
+            var email = TokenService.ObterEmailContaPorToken(token);
+            var tokenResponse = await _httpClient.PostAsJsonAsync("api/conta/token", email);
+
+            var tokenModel = await tokenResponse.Content.ReadFromJsonAsync<TokenResponseModel>();
+
+            if (tokenModel != null)
+            {
+                var cookieOptions = new CookieOptions
+                {
+                    HttpOnly = true,
+                    Secure = true,
+                    SameSite = SameSiteMode.Strict,
+                    Expires = DateTime.UtcNow.AddMinutes(15)
+                };
+                Response.Cookies.Delete("InfnetMusic.Token");
+                Response.Cookies.Append("InfnetMusic.Token", tokenModel.Token, cookieOptions);
+            }
         }
     }
 }

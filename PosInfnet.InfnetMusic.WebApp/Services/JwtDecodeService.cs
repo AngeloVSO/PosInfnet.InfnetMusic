@@ -12,9 +12,9 @@ public class TokenService
         }
         var handler = new JwtSecurityTokenHandler();
         var jwtSecurityToken = handler.ReadJwtToken(token);
-        var contaId = jwtSecurityToken.Claims.First(claim => claim.Type == claimParam).Value;
+        var calimValue = jwtSecurityToken.Claims.First(claim => claim.Type == claimParam).Value;
 
-        return contaId;
+        return calimValue;
     }
 
     public static string? ObterIdPorToken(string token)
@@ -35,6 +35,18 @@ public class TokenService
         if (!string.IsNullOrEmpty(assinaturaId))
         {
             return assinaturaId;
+        }
+
+        return null;
+    }
+
+    public static string? ObterEmailContaPorToken(string token)
+    {
+        var email = DecodeToken(token, "email");
+
+        if (!string.IsNullOrEmpty(email))
+        {
+            return email;
         }
 
         return null;
