@@ -14,12 +14,13 @@ public sealed class TokenService(IConfiguration configuration, IContaService con
 
     public async Task<ContaToken> GerarToken(LogarContaDto usuarioDto)
     {
-        var conta = await _contaService.ObterUsuarioPorEmailAsync(usuarioDto.Email) ?? throw new UnauthorizedAccessException("Usuário ou senha inválidos.");
+        var conta = await _contaService.ObterContaPorEmailAsync(usuarioDto.Email) ?? throw new UnauthorizedAccessException("Usuário ou senha inválidos.");
 
         var claims = new List<Claim>
         {
             new("id", conta.Id),
             new("email", conta.Email),
+            new("assinaturaId", conta.Assinatura?.Id.ToString() ?? ""),
             new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
         };
 

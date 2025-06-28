@@ -31,7 +31,7 @@ namespace PosInfnet.InfnetMusic.Infrastructure.Repositories
 
         public async Task<Conta?> ObterContaPorEmailAsync(string email)
         {
-            return await _context.Contas.FirstOrDefaultAsync(c => c.Email == email);
+            return await _context.Contas.Include(c => c.Assinatura).FirstOrDefaultAsync(c => c.Email == email);
         }
     }
 }

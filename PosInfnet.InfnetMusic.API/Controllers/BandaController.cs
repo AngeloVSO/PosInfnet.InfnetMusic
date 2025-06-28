@@ -55,7 +55,7 @@ public class BandaController(IBandaService bandaService) : ControllerBase
             : NotFound("Nenhuma banda encontrada para a conta informada.");
     }
 
-    [HttpPost("favoritarbanda")]
+    [HttpPut("favoritarbanda")]
     public async Task<IActionResult> FavoritarBanda([FromQuery] AlterarBandaFavoritaRequest request)
     {
         if (request is null)
@@ -70,7 +70,7 @@ public class BandaController(IBandaService bandaService) : ControllerBase
             : UnprocessableEntity("Erro de negócio.");
     }
 
-    [HttpPost("desfavoritarbanda")]
+    [HttpDelete("desfavoritarbanda")]
     public async Task<IActionResult> DesfavoritarBanda([FromQuery] AlterarBandaFavoritaRequest request)
     {
         if (request is null)

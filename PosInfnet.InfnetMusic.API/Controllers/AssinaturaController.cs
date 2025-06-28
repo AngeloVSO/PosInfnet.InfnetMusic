@@ -10,7 +10,7 @@ public partial class AssinaturaController(IContaService contaService) : Controll
 {
     private readonly IContaService _contaService = contaService;
     
-    [HttpPost("assinatura/criar")]
+    [HttpPost("criar")]
     public async Task<IActionResult> CriarAssinatura([FromBody] AssinaturaRequest request)
     {
         if (request == null)
@@ -21,5 +21,20 @@ public partial class AssinaturaController(IContaService contaService) : Controll
         var resultado = await _contaService.CriarAssinaturaAsync(request.TipoPlano, request.ContaId);
         
         return resultado != null ? Ok(resultado) : UnprocessableEntity("Erro de negócio");
+    }
+
+    [HttpGet("{contaId}")]
+    public async Task<IActionResult> ObterAssinaturaPorContaId(string contaId)
+    {
+        var conta = await _contaService.ObterContaPorIdAsync(contaId);
+
+        if (conta?.Assinatura == null)
+        {
+            return NotFound("Assinatura não encontrada.");
+        }
+
+        var assinatura = new AssinaturaDto(conta.Assinatura.Id.ToString(), (int)conta.Assinatura.Plano, conta.Assinatura.Preco, conta.Assinatura.Data);
+
+        return Ok(assinatura);
     }
 }

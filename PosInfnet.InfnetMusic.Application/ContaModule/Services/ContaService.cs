@@ -37,7 +37,7 @@ public class ContaService(IContaRepository contaRepository, ITransacaoService tr
 
     public async Task<bool> LogarContaAsync(LogarContaDto logarContaDto)
     {
-        var conta = await ObterUsuarioPorEmailAsync(logarContaDto.Email);
+        var conta = await ObterContaPorEmailAsync(logarContaDto.Email);
 
         if (conta != null && BCrypt.Net.BCrypt.Verify(logarContaDto.Senha, conta.SenhaHash))
         {
@@ -47,7 +47,7 @@ public class ContaService(IContaRepository contaRepository, ITransacaoService tr
         return false;
     }
 
-    public async Task<Conta?> ObterUsuarioPorEmailAsync(string email)
+    public async Task<Conta?> ObterContaPorEmailAsync(string email)
     {
         return await _contaRepository.ObterContaPorEmailAsync(email);
     }
@@ -94,5 +94,10 @@ public class ContaService(IContaRepository contaRepository, ITransacaoService tr
             TipoPlano.Mensal => 19.90m,
             _ => 199.90m,
         };
+    }
+
+    public async Task<Conta?> ObterContaPorIdAsync(string ContaId)
+    {
+        return await _contaRepository.ObterContaPorIdAsync(ContaId);
     }
 }

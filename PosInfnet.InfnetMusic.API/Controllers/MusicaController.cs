@@ -56,7 +56,7 @@ public class MusicaController(IMusicaService musicaService) : ControllerBase
     }
 
     [HttpPut("favoritarmusica")]
-    public async Task<IActionResult> FavoritarMusica([FromQuery] AllterarMusicaFavoritaRequest request)
+    public async Task<IActionResult> FavoritarMusica([FromQuery] AlterarMusicaFavoritaRequest request)
     {
         if (request is null)
         {
@@ -71,7 +71,7 @@ public class MusicaController(IMusicaService musicaService) : ControllerBase
     }
 
     [HttpDelete("desfavoritarmusica")]
-    public async Task<IActionResult> DesfavoritarMusica([FromQuery] AllterarMusicaFavoritaRequest request)
+    public async Task<IActionResult> DesfavoritarMusica([FromQuery] AlterarMusicaFavoritaRequest request)
     {
         if (request is null)
         {

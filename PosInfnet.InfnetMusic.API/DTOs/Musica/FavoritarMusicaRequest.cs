@@ -1,5 +1,5 @@
 ﻿namespace PosInfnet.InfnetMusic.API.DTOs.Musica;
 
-public record AllterarMusicaFavoritaRequest(string ContaId, string MusicaId)
+public record AlterarMusicaFavoritaRequest(string ContaId, string MusicaId)
 {
 }
