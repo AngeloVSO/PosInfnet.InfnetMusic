@@ -1,6 +1,6 @@
 # InfnetMusic
 
-Um sistema de gesrenciamento de músicas e bandas desenvolvido em .NET 8 com arquitetura limpa e DDD, oferecendo funcionalidades de gerenciamento de músicas, assinaturas e perfis de usuário.
+Um sistema de exibição de músicas e bandas desenvolvido em .NET 8 com arquitetura limpa e DDD, oferecendo funcionalidades de gerenciamento de músicas, assinaturas e perfis de usuário.
 
 ## 🚀 Funcionalidades
 
