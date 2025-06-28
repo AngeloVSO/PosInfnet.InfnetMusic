@@ -1,0 +1,60 @@
+﻿@using PosInfnet.InfnetMusic.WebApp.Models.Musica
+@model IEnumerable<MusicaModel>
+@{
+    ViewData["Title"] = "Lista de Músicas";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Favorite suas músicas preferidas.</h1>
+
+    <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+    @if (Model != null && Model.Any())
+    {
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>Banda</th>
+                    <th>Favorita</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var musica in Model)
+                {
+                    <tr>
+                        <td>@musica.Titulo</td>
+                        <td>@musica.BandaNome</td>
+                        <td>
+                            @if (musica.EhFavorita)
+                            {
+                                <form method="delete" asp-action="DesfavoritarMusica" asp-controller="Musica">
+                                    <input type="hidden" name="musicaId" value="@musica.Id" />
+                                    <button type="submit" class="btn btn-sm btn-outline-secondary">
+                                        <i class="fa-solid fa-thumbs-up" style="color: green;"></i>
+                                    </button>
+                                </form>
+  
+                            }
+                            else
+                            {
+                                <form method="put" asp-action="FavoritarMusica" asp-controller="Musica">
+                                    <input type="hidden" name="musicaId" value="@musica.Id" />
+                                    <button type="submit" class="btn btn-sm btn-outline-secondary">
+                                        <i class="fa-regular fa-thumbs-up"></i>
+                                    </button>
+                                </form>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else if(ViewData.ModelState.IsValid)
+    {
+        <div class="alert alert-info">
+            <p>Nenhuma música foi encontrada na sua coleção.</p>
+        </div>
+    }
+</div>

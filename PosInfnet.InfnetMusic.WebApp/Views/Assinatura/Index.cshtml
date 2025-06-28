@@ -1,0 +1,55 @@
+﻿@using PosInfnet.InfnetMusic.WebApp.Models.Assinatura
+@model AssinaturaModel
+@{
+    ViewData["Title"] = "Assinatura";
+}
+@if (ViewData["MensagemSucesso"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        @ViewData["MensagemSucesso"]
+    </div>
+}
+else if(Model.Id != null)
+{
+     <div class="d-flex flex-column align-items-center">
+        @if (@Model.TipoPlano == 0)
+        {
+            <h1 class="display-4">Seu plano atual é GRATUITO</h1>
+        }
+        else
+        {
+            <h1 class="display-4">Seu plano é @(Model.TipoPlano==1 ? "MENSAL":"ANUAL")</h1>
+        }
+        <p>Data da assinatura: @Model.Data</p>
+        <p>Valora da assinatura: @Model.Preco</p>
+    </div>
+}
+else
+{
+    <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+    <div class="d-flex flex-column align-items-center">
+        <h1 class="display-4">Escolha seu plano de assinatura!</h1>
+        <p>O lugar onde a música acontece. Salve suas músicas e bandas favoritas.</p>
+        @foreach (var plano in Model.PlanosAssinaturaModels)
+        {
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-header">
+                        <h4 class="my-0 fw-normal">@plano.TipoPlano</h4>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <li>@plano.TipoPlano</li>
+                        </ul>
+
+                        <form asp-action="CriarAssinatura" asp-controller="Assinatura" method="post">
+                            <input type="hidden" name="tipoPlano" value="@plano.CodigoTipoPlano" />
+                            <button type="submit" class="w-100 btn btn-lg btn-primary">Assinar</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
