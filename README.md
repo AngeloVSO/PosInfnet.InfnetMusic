@@ -94,7 +94,8 @@ Todos os endpoints (exceto `/conta/login` e `/conta/cadastrar`) requerem autenti
 1. Clone o repositório: git clone https://github.com/seu-usuario/PosInfnet.InfnetMusic.git
 2. Configure a string de conexão no `appsettings.json`
 3. Execute as migrations
-4. Execute o projeto
+4. Executes os scripts de seedBandas e seedMusicas, respectivamente
+5. Execute o projeto
 
 ## 📝 Licença
 
